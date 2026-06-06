@@ -22,8 +22,7 @@ seoRouter.get("/robots.txt", (_req, res) => {
   const robots = buildRobots({
     host: new URL(config.app.url).hostname,
     sitemapUrl: `${config.app.url}/sitemap.xml`,
-    allowSearch: true,    // OAI-SearchBot, PerplexityBot, Claude-SearchBot: Allow /
-    allowTraining: false, // GPTBot, ClaudeBot, Google-Extended, CCBot: Disallow /
+    ai: { allowSearch: true, allowTraining: false }, // allowSearch: buscadores IA livres; allowTraining: crawlers de treino bloqueados
     disallow: ["/api/", "/admin/", "/.env"],
   });
   res.setHeader("Content-Type", "text/plain; charset=utf-8");
@@ -61,14 +60,14 @@ seoRouter.get("/llms.txt", (_req, res) => {
     summary: "Plataforma da Triumph Tech Holding. Built with tthm-foundation-kit.",
     sections: [
       {
-        title: "API Pública",
+        titulo: "API Pública",
         links: [
           { label: "Health Check", url: `${config.app.url}/api/health` },
           { label: "Sitemap", url: `${config.app.url}/sitemap.xml` },
         ],
       },
       {
-        title: "Foundation Kit",
+        titulo: "Foundation Kit",
         links: [
           { label: "GitHub — tthm-foundation-kit", url: "https://github.com/Triumph-Tech-Holding/tthm-foundation-kit" },
           { label: "Template Ouro", url: "https://github.com/Triumph-Tech-Holding/tthm-template" },
@@ -85,9 +84,9 @@ export function buildHomeHead() {
   const meta = buildHeadMeta({
     title: `${config.app.name} — Triumph Tech Holding`,
     description: "Plataforma premium da Triumph Tech Holding.",
-    canonicalUrl: config.app.url,
+    url: config.app.url,
     siteName: "Triumph Tech Holding",
-    ogType: "website",
+    type: "website",
   });
 
   const orgSchema = buildOrganizationSchema({
