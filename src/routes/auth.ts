@@ -94,7 +94,7 @@ export const authRouter = Router();
 /** POST /api/auth/login */
 authRouter.post("/login", async (req: Request, res: Response): Promise<void> => {
   try {
-    const result = await authService.login(req.body, req.ip ?? null, req.headers["user-agent"] ?? null);
+    const result = await authService.loginUser(req.body, { ipAddress: req.ip, userAgent: req.headers["user-agent"] });
     res.json({ ok: true, ...result });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Erro interno";
@@ -109,7 +109,7 @@ authRouter.post("/refresh", async (req: Request, res: Response): Promise<void> =
   try {
     const { refreshToken } = req.body as { refreshToken?: string };
     if (!refreshToken) { res.status(400).json({ ok: false, error: "refreshToken obrigatório" }); return; }
-    const tokens = await authService.refreshToken(refreshToken);
+    const tokens = await authService.refreshAccessToken(refreshToken);
     res.json({ ok: true, ...tokens });
   } catch {
     res.status(401).json({ ok: false, error: "Refresh token inválido ou expirado" });
