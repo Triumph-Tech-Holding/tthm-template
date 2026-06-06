@@ -30,23 +30,23 @@ describe("POST /api/auth/login", () => {
   });
 });
 
-describe("GET /api/me — protegida", () => {
+describe("GET /api/auth/me — protegida", () => {
   it("deve retornar 401 sem token", async () => {
-    const res = await request(app).get("/api/me");
+    const res = await request(app).get("/api/auth/me");
     expect(res.status).toBe(401);
   });
 
   it("deve retornar 401 com token inválido", async () => {
     const res = await request(app)
-      .get("/api/me")
+      .get("/api/auth/me")
       .set("Authorization", "Bearer token.invalido.aqui");
     expect(res.status).toBe(401);
   });
 });
 
-describe("GET /api/admin — requer master", () => {
+describe("GET /api/auth/admin — requer master", () => {
   it("deve retornar 401 sem autenticação", async () => {
-    const res = await request(app).get("/api/admin");
+    const res = await request(app).get("/api/auth/admin");
     expect(res.status).toBe(401);
   });
 });
