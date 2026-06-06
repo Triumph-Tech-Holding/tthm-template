@@ -1,0 +1,36 @@
+{
+  "name": "tthm-template",
+  "version": "0.1.0",
+  "description": "Template Ouro — Node 20+ · TypeScript ESM · Express 5 · pnpm — Triumph Tech Holding",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "auto-push": "bash scripts/auto-push.sh"
+  },
+  "dependencies": {
+    "@tthm/auth": "github:Triumph-Tech-Holding/tthm-foundation-kit#path:packages/auth",
+    "@tthm/seo": "github:Triumph-Tech-Holding/tthm-foundation-kit#path:packages/seo",
+    "@tthm/notify": "github:Triumph-Tech-Holding/tthm-foundation-kit#path:packages/notify",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/supertest": "^6.0.0",
+    "@vitest/coverage-v8": "^2.1.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}
