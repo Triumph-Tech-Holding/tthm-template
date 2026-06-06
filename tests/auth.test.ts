@@ -16,7 +16,7 @@ describe("POST /api/auth/login", () => {
   it("deve retornar 401 com credenciais inválidas", async () => {
     const res = await request(app)
       .post("/api/auth/login")
-      .send({ email: "naoexiste@tthm.io", password: "errada" });
+      .send({ email: "naoexiste@tthm.io", password: "SenhaErrada@123" });
     expect(res.status).toBe(401);
     expect(res.body.ok).toBe(false);
   });
