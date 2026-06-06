@@ -1,0 +1,54 @@
+{
+  "$schema": "https://tthm.io/schemas/status-v2.json",
+  "projeto": "tthm-template",
+  "versao": "0.1.0",
+  "faseAtual": "inicio",
+  "ultimaAtualizacao": "2026-06-06",
+  "modulos": {
+    "auth": "@tthm/auth@0.1.0",
+    "seo": "@tthm/seo@0.1.0",
+    "notify": "@tthm/notify@0.1.0"
+  },
+  "fases": [
+    {
+      "id": "inicio",
+      "nome": "Início",
+      "descricao": "Fundação do projeto: auth, SEO, notificações, CI",
+      "status": "em_andamento",
+      "checklist": [
+        { "id": "auth-base", "descricao": "Auth JWT + RBAC (@tthm/auth)", "status": "done" },
+        { "id": "seo-base", "descricao": "robots.txt + sitemap.xml + llms.txt (@tthm/seo)", "status": "done" },
+        { "id": "notify-base", "descricao": "Notificações multi-canal (@tthm/notify)", "status": "done" },
+        { "id": "health-endpoint", "descricao": "GET /api/health respondendo", "status": "done" },
+        { "id": "ci", "descricao": "CI GitHub Actions (typecheck + tests)", "status": "done" },
+        { "id": "auto-push", "descricao": "Script auto-push.sh configurado", "status": "done" },
+        { "id": "env-example", "descricao": ".env.example documentado", "status": "done" },
+        { "id": "banco-real", "descricao": "Trocar inMemoryUserRepo por banco real", "status": "todo" },
+        { "id": "cors-prod", "descricao": "Configurar CORS para domínio de produção", "status": "todo" },
+        { "id": "rate-limit", "descricao": "Rate limiting nas rotas públicas", "status": "todo" }
+      ]
+    },
+    {
+      "id": "mvp",
+      "nome": "MVP",
+      "descricao": "Funcionalidades core do produto",
+      "status": "pendente",
+      "checklist": [
+        { "id": "banco-integracao", "descricao": "Integração com banco de dados real", "status": "todo" },
+        { "id": "feature-principal", "descricao": "Feature principal do produto", "status": "todo" },
+        { "id": "testes-e2e", "descricao": "Testes end-to-end", "status": "todo" }
+      ]
+    },
+    {
+      "id": "producao",
+      "nome": "Produção",
+      "descricao": "Deploy, monitoramento e uptime",
+      "status": "pendente",
+      "checklist": [
+        { "id": "deploy", "descricao": "Deploy configurado (Replit / Railway / etc.)", "status": "todo" },
+        { "id": "uptime-monitor", "descricao": "Monitor de uptime com alertaUptime()", "status": "todo" },
+        { "id": "dominio", "descricao": "Domínio customizado configurado", "status": "todo" }
+      ]
+    }
+  ]
+}
