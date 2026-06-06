@@ -98,8 +98,9 @@ authRouter.post("/login", async (req: Request, res: Response): Promise<void> => 
     res.json({ ok: true, ...result });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Erro interno";
-    const status = msg.includes("inválid") || msg.includes("Credenciais") ? 401
-      : msg.includes("bloqueada") ? 423 : 400;
+    const status = (err as { statusCode?: number }).statusCode
+      ?? (msg.includes("inválid") || msg.includes("Credenciais") ? 401
+         : msg.includes("bloqueada") ? 423 : 400);
     res.status(status).json({ ok: false, error: msg });
   }
 });
